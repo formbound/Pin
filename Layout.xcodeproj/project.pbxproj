@@ -13,12 +13,12 @@
 		B73247031E2CFA0300CE3C79 /* Layout.h in Headers */ = {isa = PBXBuildFile; fileRef = B7936B0A1DF1A6A100B1161C /* Layout.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B7936AF71DF1A66500B1161C /* Layout.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7936AED1DF1A66400B1161C /* Layout.framework */; };
 		B7936B0B1DF1A6C800B1161C /* Layout.h in Headers */ = {isa = PBXBuildFile; fileRef = B7936B0A1DF1A6A100B1161C /* Layout.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		B7A023301E1986A700C8AF64 /* LayoutItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7A0232F1E1986A700C8AF64 /* LayoutItem.swift */; };
-		B7A023411E198B2D00C8AF64 /* LayoutItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7A0232F1E1986A700C8AF64 /* LayoutItem.swift */; };
+		B7A023301E1986A700C8AF64 /* LayoutPin.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7A0232F1E1986A700C8AF64 /* LayoutPin.swift */; };
+		B7A023411E198B2D00C8AF64 /* LayoutPin.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7A0232F1E1986A700C8AF64 /* LayoutPin.swift */; };
 		B7B1E2291E2D071600C7518C /* Layoutable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B1E2281E2D071600C7518C /* Layoutable.swift */; };
 		B7B1E22A1E2D071600C7518C /* Layoutable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B1E2281E2D071600C7518C /* Layoutable.swift */; };
 		B7B1E22B1E2D071600C7518C /* Layoutable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B1E2281E2D071600C7518C /* Layoutable.swift */; };
-		B7B1E22C1E2D072200C7518C /* LayoutItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7A0232F1E1986A700C8AF64 /* LayoutItem.swift */; };
+		B7B1E22C1E2D072200C7518C /* LayoutPin.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7A0232F1E1986A700C8AF64 /* LayoutPin.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,7 +47,7 @@
 		B7936AF61DF1A66500B1161C /* LayoutTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LayoutTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7936B091DF1A6A100B1161C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B7936B0A1DF1A6A100B1161C /* Layout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Layout.h; sourceTree = "<group>"; };
-		B7A0232F1E1986A700C8AF64 /* LayoutItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayoutItem.swift; sourceTree = "<group>"; };
+		B7A0232F1E1986A700C8AF64 /* LayoutPin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayoutPin.swift; sourceTree = "<group>"; };
 		B7A023381E198B2000C8AF64 /* Layout.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Layout.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7B1E2281E2D071600C7518C /* Layoutable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Layoutable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -128,7 +128,7 @@
 			isa = PBXGroup;
 			children = (
 				B7B1E2281E2D071600C7518C /* Layoutable.swift */,
-				B7A0232F1E1986A700C8AF64 /* LayoutItem.swift */,
+				B7A0232F1E1986A700C8AF64 /* LayoutPin.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -363,7 +363,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B7B1E22C1E2D072200C7518C /* LayoutItem.swift in Sources */,
+				B7B1E22C1E2D072200C7518C /* LayoutPin.swift in Sources */,
 				B7B1E22B1E2D071600C7518C /* Layoutable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -380,7 +380,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B7A023301E1986A700C8AF64 /* LayoutItem.swift in Sources */,
+				B7A023301E1986A700C8AF64 /* LayoutPin.swift in Sources */,
 				B7B1E2291E2D071600C7518C /* Layoutable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -396,7 +396,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B7A023411E198B2D00C8AF64 /* LayoutItem.swift in Sources */,
+				B7A023411E198B2D00C8AF64 /* LayoutPin.swift in Sources */,
 				B7B1E22A1E2D071600C7518C /* Layoutable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

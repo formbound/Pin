@@ -20,44 +20,44 @@ public protocol Layoutable: AnyObject {}
 
 extension Layoutable {
     
-    public var leftConstraint: LayoutItem {
-        return LayoutItem(item: self, attribute: .left)
+    public var leftPin: LayoutPin {
+        return LayoutPin(item: self, attribute: .left)
     }
     
-    public var rightConstraint: LayoutItem {
-        return LayoutItem(item: self, attribute: .right)
+    public var rightPin: LayoutPin {
+        return LayoutPin(item: self, attribute: .right)
     }
     
-    public var topConstraint: LayoutItem {
-        return LayoutItem(item: self, attribute: .top)
+    public var topPin: LayoutPin {
+        return LayoutPin(item: self, attribute: .top)
     }
     
-    public var bottomConstraint: LayoutItem {
-        return LayoutItem(item: self, attribute: .bottom)
+    public var bottomPin: LayoutPin {
+        return LayoutPin(item: self, attribute: .bottom)
     }
     
-    public var leadingConstraint: LayoutItem {
-        return LayoutItem(item: self, attribute: .leading)
+    public var leadingPin: LayoutPin {
+        return LayoutPin(item: self, attribute: .leading)
     }
     
-    public var trailingConstraint: LayoutItem {
-        return LayoutItem(item: self, attribute: .trailing)
+    public var trailingPin: LayoutPin {
+        return LayoutPin(item: self, attribute: .trailing)
     }
     
-    public var widthConstraint: LayoutItem {
-        return LayoutItem(item: self, attribute: .width)
+    public var widthPin: LayoutPin {
+        return LayoutPin(item: self, attribute: .width)
     }
     
-    public var heightConstraint: LayoutItem {
-        return LayoutItem(item: self, attribute: .height)
+    public var heightPin: LayoutPin {
+        return LayoutPin(item: self, attribute: .height)
     }
     
-    public var centerXConstraint: LayoutItem {
-        return LayoutItem(item: self, attribute: .centerX)
+    public var centerXPin: LayoutPin {
+        return LayoutPin(item: self, attribute: .centerX)
     }
     
-    public var centerYConstraint: LayoutItem {
-        return LayoutItem(item: self, attribute: .centerY)
+    public var centerYPin: LayoutPin {
+        return LayoutPin(item: self, attribute: .centerY)
     }
     
     #if os(macOS)
@@ -76,11 +76,11 @@ extension Layoutable {
     
     public func edgeConstraints(equalTo other: Layoutable, insets: UIEdgeInsets = .zero) -> [NSLayoutConstraint] {
         return [
-            leftConstraint == other.leftConstraint + insets.left,
-            rightConstraint == other.rightConstraint - insets.left,
+            leftPin == other.leftPin + insets.left,
+            rightPin == other.rightPin - insets.left,
             
-            topConstraint == other.topConstraint + insets.top,
-            bottomConstraint == other.bottomConstraint - insets.bottom
+            topPin == other.topPin + insets.top,
+            bottomPin == other.bottomPin - insets.bottom
         ]
     }
     
@@ -89,28 +89,28 @@ extension Layoutable {
 
 #if os(iOS) || os(tvOS)
     public extension Layoutable {
-        public var leftMarginConstraint: LayoutItem {
-            return LayoutItem(item: self, attribute: .leftMargin)
+        public var leftMarginConstraint: LayoutPin {
+            return LayoutPin(item: self, attribute: .leftMargin)
         }
         
-        public var rightMarginConstraint: LayoutItem {
-            return LayoutItem(item: self, attribute: .rightMargin)
+        public var rightMarginConstraint: LayoutPin {
+            return LayoutPin(item: self, attribute: .rightMargin)
         }
         
-        public var topMarginConstraint: LayoutItem {
-            return LayoutItem(item: self, attribute: .topMargin)
+        public var topMarginConstraint: LayoutPin {
+            return LayoutPin(item: self, attribute: .topMargin)
         }
         
-        public var bottomMarginConstraint: LayoutItem {
-            return LayoutItem(item: self, attribute: .bottomMargin)
+        public var bottomMarginConstraint: LayoutPin {
+            return LayoutPin(item: self, attribute: .bottomMargin)
         }
         
-        public var leadingMarginConstraint: LayoutItem {
-            return LayoutItem(item: self, attribute: .leadingMargin)
+        public var leadingMarginConstraint: LayoutPin {
+            return LayoutPin(item: self, attribute: .leadingMargin)
         }
         
-        public var trailingMarginConstraint: LayoutItem {
-            return LayoutItem(item: self, attribute: .trailingMargin)
+        public var trailingMarginConstraint: LayoutPin {
+            return LayoutPin(item: self, attribute: .trailingMargin)
         }
     }
 #endif
@@ -122,17 +122,17 @@ extension LayoutGuide: Layoutable {}
 extension View: Layoutable {}
 
 public extension View {
-    public var baseline: LayoutItem {
-        return LayoutItem(item: self, attribute: .lastBaseline)
+    public var baseline: LayoutPin {
+        return LayoutPin(item: self, attribute: .lastBaseline)
     }
     
     @available(iOS 8.0, OSX 10.11, *)
-    public var firstBaseline: LayoutItem {
-        return LayoutItem(item: self, attribute: .firstBaseline)
+    public var firstBaseline: LayoutPin {
+        return LayoutPin(item: self, attribute: .firstBaseline)
     }
     
-    public var lastBaseline: LayoutItem {
-        return LayoutItem(item: self, attribute: .lastBaseline)
+    public var lastBaseline: LayoutPin {
+        return LayoutPin(item: self, attribute: .lastBaseline)
     }
 }
 

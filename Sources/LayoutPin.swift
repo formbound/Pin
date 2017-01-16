@@ -5,7 +5,7 @@
 #endif
 
 
-public struct LayoutItem {
+public struct LayoutPin {
     public let item: AnyObject
     public let attribute: NSLayoutAttribute
     public var multiplier: CGFloat
@@ -18,7 +18,7 @@ public struct LayoutItem {
         self.constant = constant
     }
 
-    internal func createConstraint(combining other: LayoutItem, relatedBy relation: NSLayoutRelation) -> NSLayoutConstraint {
+    internal func createConstraint(combining other: LayoutPin, relatedBy relation: NSLayoutRelation) -> NSLayoutConstraint {
         return NSLayoutConstraint(
             item: self.item,
             attribute: attribute,
@@ -43,27 +43,27 @@ public struct LayoutItem {
     }
 }
 
-public func == (lhs: LayoutItem, rhs: LayoutItem) -> NSLayoutConstraint {
+public func == (lhs: LayoutPin, rhs: LayoutPin) -> NSLayoutConstraint {
     return lhs.createConstraint(combining: rhs, relatedBy: .equal)
 }
 
-public func <= (lhs: LayoutItem, rhs: LayoutItem) -> NSLayoutConstraint {
+public func <= (lhs: LayoutPin, rhs: LayoutPin) -> NSLayoutConstraint {
     return lhs.createConstraint(combining: rhs, relatedBy: .lessThanOrEqual)
 }
 
-public func >= (lhs: LayoutItem, rhs: LayoutItem) -> NSLayoutConstraint {
+public func >= (lhs: LayoutPin, rhs: LayoutPin) -> NSLayoutConstraint {
     return lhs.createConstraint(combining: rhs, relatedBy: .greaterThanOrEqual)
 }
 
-public func == (lhs: LayoutItem, rhs: CGFloat) -> NSLayoutConstraint {
+public func == (lhs: LayoutPin, rhs: CGFloat) -> NSLayoutConstraint {
     return lhs.createConstraint(withConstant: rhs, relatedBy: .equal)
 }
 
-public func <= (lhs: LayoutItem, rhs: CGFloat) -> NSLayoutConstraint {
+public func <= (lhs: LayoutPin, rhs: CGFloat) -> NSLayoutConstraint {
     return lhs.createConstraint(withConstant: rhs, relatedBy: .lessThanOrEqual)
 }
 
-public func >= (lhs: LayoutItem, rhs: CGFloat) -> NSLayoutConstraint {
+public func >= (lhs: LayoutPin, rhs: CGFloat) -> NSLayoutConstraint {
     return lhs.createConstraint(withConstant: rhs, relatedBy: .greaterThanOrEqual)
 }
 
@@ -79,25 +79,25 @@ public func ~ (lhs: NSLayoutConstraint, rhs: LayoutPriority) -> NSLayoutConstrai
     return lhs
 }
 
-public func + (lhs: LayoutItem, rhs: CGFloat) -> LayoutItem {
+public func + (lhs: LayoutPin, rhs: CGFloat) -> LayoutPin {
     var lhs = lhs
     lhs.constant += rhs
     return lhs
 }
 
-public func - (lhs: LayoutItem, rhs: CGFloat) -> LayoutItem {
+public func - (lhs: LayoutPin, rhs: CGFloat) -> LayoutPin {
     var lhs = lhs
     lhs.constant -= rhs
     return lhs
 }
 
-public func * (lhs: LayoutItem, rhs: CGFloat) -> LayoutItem {
+public func * (lhs: LayoutPin, rhs: CGFloat) -> LayoutPin {
     var lhs = lhs
     lhs.multiplier *= rhs
     return lhs
 }
 
-public func / (lhs: LayoutItem, rhs: CGFloat) -> LayoutItem {
+public func / (lhs: LayoutPin, rhs: CGFloat) -> LayoutPin {
     var lhs = lhs
     lhs.multiplier /= rhs
     return lhs
