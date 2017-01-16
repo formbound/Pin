@@ -16,7 +16,7 @@ class LayoutTests: XCTestCase {
     let label = UILabel()
 
     lazy var labelCenterYConstraint: NSLayoutConstraint = {
-        return self.label.centerY == self.view.centerY
+        return self.label.layout.centerY == self.view.layout.centerY
     }()
 
     override func setUp() {
@@ -32,13 +32,13 @@ class LayoutTests: XCTestCase {
     func testExample() {
 
 
-
-        NSLayoutConstraint.activate([
-            label.top == view.topMargin ~ UILayoutPriorityDefaultHigh,
-            label.centerX == view.centerX,
-            label.left >= view.leftMargin,
-            label.right <= view.rightMargin,
-        ])
+        let constraints = [
+            label.layout.top          == view.layout.topMargin ~ UILayoutPriorityDefaultHigh,
+            label.layout.centerX      == view.layout.centerX,
+            label.layout.left         >= view.layout.leftMargin,
+            label.layout.right        <= view.layout.rightMargin,
+        ]
+        
 
     }
     

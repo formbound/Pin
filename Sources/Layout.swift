@@ -17,69 +17,78 @@
 
 public protocol Layoutable: AnyObject {}
 
-extension Layoutable {
+struct Layout {
+    
+    let layoutable: Layoutable
+    
     public var left: LayoutItem<LayoutDirection.Horizontal> {
-        return LayoutItem(item: self, attribute: .left)
+        return LayoutItem(item: layoutable, attribute: .left)
     }
-
+    
     public var leftMargin: LayoutItem<LayoutDirection.Horizontal> {
-        return LayoutItem(item: self, attribute: .leftMargin)
+        return LayoutItem(item: layoutable, attribute: .leftMargin)
     }
-
+    
     public var right: LayoutItem<LayoutDirection.Horizontal> {
-        return LayoutItem(item: self, attribute: .right)
+        return LayoutItem(item: layoutable, attribute: .right)
     }
-
+    
     public var rightMargin: LayoutItem<LayoutDirection.Horizontal> {
-        return LayoutItem(item: self, attribute: .rightMargin)
+        return LayoutItem(item: layoutable, attribute: .rightMargin)
     }
-
+    
     public var top: LayoutItem<LayoutDirection.Vertical> {
-        return LayoutItem(item: self, attribute: .top)
+        return LayoutItem(item: layoutable, attribute: .top)
     }
-
+    
     public var topMargin: LayoutItem<LayoutDirection.Vertical> {
-        return LayoutItem(item: self, attribute: .topMargin)
+        return LayoutItem(item: layoutable, attribute: .topMargin)
     }
-
+    
     public var bottom: LayoutItem<LayoutDirection.Vertical> {
-        return LayoutItem(item: self, attribute: .bottom)
+        return LayoutItem(item: layoutable, attribute: .bottom)
     }
-
+    
     public var bottomMargin: LayoutItem<LayoutDirection.Vertical> {
-        return LayoutItem(item: self, attribute: .bottomMargin)
+        return LayoutItem(item: layoutable, attribute: .bottomMargin)
     }
-
+    
     public var leading: LayoutItem<LayoutDirection.Horizontal> {
-        return LayoutItem(item: self, attribute: .leading)
+        return LayoutItem(item: layoutable, attribute: .leading)
     }
-
+    
     public var leadingMargin: LayoutItem<LayoutDirection.Horizontal> {
-        return LayoutItem(item: self, attribute: .leadingMargin)
+        return LayoutItem(item: layoutable, attribute: .leadingMargin)
     }
-
+    
     public var trailing: LayoutItem<LayoutDirection.Horizontal> {
-        return LayoutItem(item: self, attribute: .trailing)
+        return LayoutItem(item: layoutable, attribute: .trailing)
     }
-
+    
     public var trailingMargin: LayoutItem<LayoutDirection.Horizontal> {
-        return LayoutItem(item: self, attribute: .trailingMargin)
+        return LayoutItem(item: layoutable, attribute: .trailingMargin)
     }
-
+    
     public var width: LayoutItem<LayoutDirection.Size> {
-        return LayoutItem(item: self, attribute: .width)
+        return LayoutItem(item: layoutable, attribute: .width)
     }
-
+    
     public var height: LayoutItem<LayoutDirection.Size> {
-        return LayoutItem(item: self, attribute: .height)
+        return LayoutItem(item: layoutable, attribute: .height)
     }
-
+    
     public var centerX: LayoutItem<LayoutDirection.Horizontal> {
-        return LayoutItem(item: self, attribute: .centerX)
+        return LayoutItem(item: layoutable, attribute: .centerX)
     }
-
+    
     public var centerY: LayoutItem<LayoutDirection.Vertical> {
-        return LayoutItem(item: self, attribute: .centerY)
+        return LayoutItem(item: layoutable, attribute: .centerY)
+    }
+}
+
+extension Layoutable {
+    var layout: Layout {
+        return Layout(layoutable: self)
     }
 }
 
