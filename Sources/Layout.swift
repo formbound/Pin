@@ -18,112 +18,103 @@
 
 public protocol Layoutable: AnyObject {}
 
-public struct Layout {
+extension Layoutable {
     
-    public let layoutable: Layoutable
-    
-    public var left: LayoutItem<LayoutDirection.Horizontal> {
-        return LayoutItem(item: layoutable, attribute: .left)
+    public var leftConstraint: LayoutItem<LayoutDirection.Horizontal> {
+        return LayoutItem(item: self, attribute: .left)
     }
     
-    public var right: LayoutItem<LayoutDirection.Horizontal> {
-        return LayoutItem(item: layoutable, attribute: .right)
+    public var rightConstraint: LayoutItem<LayoutDirection.Horizontal> {
+        return LayoutItem(item: self, attribute: .right)
     }
     
-    public var top: LayoutItem<LayoutDirection.Vertical> {
-        return LayoutItem(item: layoutable, attribute: .top)
+    public var topConstraint: LayoutItem<LayoutDirection.Vertical> {
+        return LayoutItem(item: self, attribute: .top)
     }
     
-    public var bottom: LayoutItem<LayoutDirection.Vertical> {
-        return LayoutItem(item: layoutable, attribute: .bottom)
+    public var bottomConstraint: LayoutItem<LayoutDirection.Vertical> {
+        return LayoutItem(item: self, attribute: .bottom)
     }
     
-    public var leading: LayoutItem<LayoutDirection.Horizontal> {
-        return LayoutItem(item: layoutable, attribute: .leading)
+    public var leadingConstraint: LayoutItem<LayoutDirection.Horizontal> {
+        return LayoutItem(item: self, attribute: .leading)
     }
     
-    public var trailing: LayoutItem<LayoutDirection.Horizontal> {
-        return LayoutItem(item: layoutable, attribute: .trailing)
+    public var trailingConstraint: LayoutItem<LayoutDirection.Horizontal> {
+        return LayoutItem(item: self, attribute: .trailing)
     }
     
-    public var width: LayoutItem<LayoutDirection.Size> {
-        return LayoutItem(item: layoutable, attribute: .width)
+    public var widthConstraint: LayoutItem<LayoutDirection.Size> {
+        return LayoutItem(item: self, attribute: .width)
     }
     
-    public var height: LayoutItem<LayoutDirection.Size> {
-        return LayoutItem(item: layoutable, attribute: .height)
+    public var heightConstraint: LayoutItem<LayoutDirection.Size> {
+        return LayoutItem(item: self, attribute: .height)
     }
     
-    public var centerX: LayoutItem<LayoutDirection.Horizontal> {
-        return LayoutItem(item: layoutable, attribute: .centerX)
+    public var centerXConstraint: LayoutItem<LayoutDirection.Horizontal> {
+        return LayoutItem(item: self, attribute: .centerX)
     }
     
-    public var centerY: LayoutItem<LayoutDirection.Vertical> {
-        return LayoutItem(item: layoutable, attribute: .centerY)
+    public var centerYConstraint: LayoutItem<LayoutDirection.Vertical> {
+        return LayoutItem(item: self, attribute: .centerY)
     }
     
     #if os(macOS)
     
-    public func edges(equalTo other: Layoutable, insets: EdgeInsets = EdgeInsets(top: 0, left: 0, bottom: 0, right: 0)) -> [NSLayoutConstraint] {
+    public func edgeConstraints(equalTo other: Layoutable, insets: EdgeInsets = EdgeInsets(top: 0, left: 0, bottom: 0, right: 0)) -> [NSLayoutConstraint] {
         return [
-            left == other.layout.left + insets.left,
-            right == other.layout.right - insets.left,
-            
-            top == other.layout.top + insets.top,
-            bottom == other.layout.bottom - insets.bottom
+            leftConstraint == other.leftConstraint + insets.left,
+            rightConstraint == other.rightConstraint - insets.left,
+    
+            topConstraint == other.topConstraint + insets.top,
+            bottomConstraint == other.bottomConstraint - insets.bottom
         ]
     }
     
     #elseif os(iOS) || os(tvOS)
     
-    public func edges(equalTo other: Layoutable, insets: UIEdgeInsets = .zero) -> [NSLayoutConstraint] {
+    public func edgeConstraints(equalTo other: Layoutable, insets: UIEdgeInsets = .zero) -> [NSLayoutConstraint] {
         return [
-            left == other.layout.left + insets.left,
-            right == other.layout.right - insets.left,
+            leftConstraint == other.leftConstraint + insets.left,
+            rightConstraint == other.rightConstraint - insets.left,
             
-            top == other.layout.top + insets.top,
-            bottom == other.layout.bottom - insets.bottom
+            topConstraint == other.topConstraint + insets.top,
+            bottomConstraint == other.bottomConstraint - insets.bottom
         ]
     }
     
     #endif
 }
 
-
 #if os(iOS) || os(tvOS)
-    public extension Layout {
-        public var leftMargin: LayoutItem<LayoutDirection.Horizontal> {
-            return LayoutItem(item: layoutable, attribute: .leftMargin)
+    public extension Layoutable {
+        public var leftMarginConstraint: LayoutItem<LayoutDirection.Horizontal> {
+            return LayoutItem(item: self, attribute: .leftMargin)
         }
         
-        public var rightMargin: LayoutItem<LayoutDirection.Horizontal> {
-            return LayoutItem(item: layoutable, attribute: .rightMargin)
+        public var rightMarginConstraint: LayoutItem<LayoutDirection.Horizontal> {
+            return LayoutItem(item: self, attribute: .rightMargin)
         }
         
-        public var topMargin: LayoutItem<LayoutDirection.Vertical> {
-            return LayoutItem(item: layoutable, attribute: .topMargin)
+        public var topMarginConstraint: LayoutItem<LayoutDirection.Vertical> {
+            return LayoutItem(item: self, attribute: .topMargin)
         }
         
-        public var bottomMargin: LayoutItem<LayoutDirection.Vertical> {
-            return LayoutItem(item: layoutable, attribute: .bottomMargin)
+        public var bottomMarginConstraint: LayoutItem<LayoutDirection.Vertical> {
+            return LayoutItem(item: self, attribute: .bottomMargin)
         }
         
-        public var leadingMargin: LayoutItem<LayoutDirection.Horizontal> {
-            return LayoutItem(item: layoutable, attribute: .leadingMargin)
+        public var leadingMarginConstraint: LayoutItem<LayoutDirection.Horizontal> {
+            return LayoutItem(item: self, attribute: .leadingMargin)
         }
         
-        public var trailingMargin: LayoutItem<LayoutDirection.Horizontal> {
-            return LayoutItem(item: layoutable, attribute: .trailingMargin)
+        public var trailingMarginConstraint: LayoutItem<LayoutDirection.Horizontal> {
+            return LayoutItem(item: self, attribute: .trailingMargin)
         }
     }
 #endif
 
-
-public extension Layoutable {
-    public var layout: Layout {
-        return Layout(layoutable: self)
-    }
-}
 
 @available(iOS 9.0, OSX 10.11, *)
 extension LayoutGuide: Layoutable {}

@@ -17,7 +17,7 @@ class ViewController: UIViewController {
     let label = UIView()
 
     lazy var labelCenterYConstraint: NSLayoutConstraint = {
-        return self.label.layout.centerY == self.view.layout.centerY
+        return self.label.centerYConstraint == self.view.centerYConstraint
     }()
 
     override func viewDidLoad() {
@@ -27,10 +27,10 @@ class ViewController: UIViewController {
         view.addSubview(label)
 
         NSLayoutConstraint.activate([
-            label.layout.top == view.layout.topMargin,
-            label.layout.centerX == view.layout.centerX,
-            label.layout.left >= view.layout.leftMargin,
-            label.layout.right <= view.layout.rightMargin,
+            label.topConstraint == view.topMarginConstraint,
+            label.centerXConstraint == view.centerXConstraint,
+            label.leftConstraint >= view.leftMarginConstraint,
+            label.rightConstraint <= view.rightMarginConstraint,
             ])
     }
 
