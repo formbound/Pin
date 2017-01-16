@@ -62,19 +62,19 @@ extension Layoutable {
     
     #if os(macOS)
     
-    public func edgeConstraints(equalTo other: Layoutable, insets: EdgeInsets = EdgeInsets(top: 0, left: 0, bottom: 0, right: 0)) -> [NSLayoutConstraint] {
+    public func pinEdges(to other: Layoutable, insets: EdgeInsets = EdgeInsets(top: 0, left: 0, bottom: 0, right: 0)) -> [NSLayoutConstraint] {
         return [
-            leftConstraint == other.leftConstraint + insets.left,
-            rightConstraint == other.rightConstraint - insets.left,
+            leftPin == other.leftPin + insets.left,
+            rightPin == other.rightPin - insets.left,
     
-            topConstraint == other.topConstraint + insets.top,
-            bottomConstraint == other.bottomConstraint - insets.bottom
+            topPin == other.topPin + insets.top,
+            bottomPin == other.bottomPin - insets.bottom
         ]
     }
     
     #elseif os(iOS) || os(tvOS)
     
-    public func edgeConstraints(equalTo other: Layoutable, insets: UIEdgeInsets = .zero) -> [NSLayoutConstraint] {
+    public func pinEdges(to other: Layoutable, insets: UIEdgeInsets = .zero) -> [NSLayoutConstraint] {
         return [
             leftPin == other.leftPin + insets.left,
             rightPin == other.rightPin - insets.left,
@@ -113,6 +113,17 @@ extension Layoutable {
             return LayoutPin(item: self, attribute: .trailingMargin)
         }
     }
+    
+    public extension UILayoutSupport {
+        public var topPin: LayoutPin {
+            return LayoutPin(item: self, attribute: .top)
+        }
+        
+        public var bottomPin: LayoutPin {
+            return LayoutPin(item: self, attribute: .bottom)
+        }
+    }
+    
 #endif
 
 
@@ -135,6 +146,7 @@ public extension View {
         return LayoutPin(item: self, attribute: .lastBaseline)
     }
 }
+
 
 @available(OSX 10.10, iOS 8.0, tvOS 9.0, *)
 public extension Sequence where Iterator.Element == NSLayoutConstraint {
