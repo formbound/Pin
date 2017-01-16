@@ -1,23 +1,23 @@
-Layout
+Pin
 ========
 <a href="https://swift.org"><img src="https://img.shields.io/badge/Swift-3.0.2-orange.svg?style=flat" alt="Swift" /></a>
 <a href="https://tldrlegal.com/license/mit-license"><img src="https://img.shields.io/badge/License-MIT-blue.svg?style=flat" alt="License" /></a>
 
-Layout gives you an easily readable, easily writable layout API for iOS, macOS and tvOS while maintaining as little overhead as possible.
+Pin gives you an easily readable, easily writable layout API for iOS, macOS and tvOS while maintaining as little overhead as possible.
 
 
 ## Usage
 
 ```swift
 import UIKit
-import Layout
+import Pin
 
 class ViewController: UIViewController {
 
     let label = UIView()
 
     lazy var labelCenterYConstraint: NSLayoutConstraint = {
-        return self.label.centerYConstraint == self.view.centerYConstraint
+        return self.label.centerYPin == self.view.centerYPin
     }()
 
     override func viewDidLoad() {
@@ -27,15 +27,15 @@ class ViewController: UIViewController {
         view.addSubview(label)
 
         NSLayoutConstraint.activate([
-            label.topConstraint == view.topMarginConstraint,
-            label.centerXConstraint == view.centerXConstraint,
-            label.leftConstraint >= view.leftMarginConstraint,
-            label.rightConstraint <= view.rightMarginConstraint,
+            label.topPin == view.topMarginPin,
+            label.centerXPin == view.centerXPin,
+            label.leftPin >= view.leftMarginPin,
+            label.rightPin <= view.rightMarginPin,
             ])
     }
 
     override func viewDidAppear(_ animated: Bool) {
-        super.viewdidLoad(animated)
+        super.viewDidAppear(animated)
 
         labelCenterYConstraint.isActive = true
     }
@@ -53,10 +53,10 @@ $ brew update
 $ brew install carthage
 ```
 
-To integrate Layout into your Xcode project using Carthage, add the following to your `Cartfile`:
+To integrate Pin into your Xcode project using Carthage, add the following to your `Cartfile`:
 
 ```
-github "formbound/Layout"
+github "formbound/Pin"
 ```
 
 ## Credits
@@ -65,4 +65,4 @@ github "formbound/Layout"
 
 ## License
 
-Layout is released under the MIT license. See LICENSE for details.
+Pin is released under the MIT license. See LICENSE for details.

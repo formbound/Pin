@@ -89,27 +89,27 @@ extension Layoutable {
 
 #if os(iOS) || os(tvOS)
     public extension Layoutable {
-        public var leftMarginConstraint: LayoutPin {
+        public var leftMarginPin: LayoutPin {
             return LayoutPin(item: self, attribute: .leftMargin)
         }
         
-        public var rightMarginConstraint: LayoutPin {
+        public var rightMarginPin: LayoutPin {
             return LayoutPin(item: self, attribute: .rightMargin)
         }
         
-        public var topMarginConstraint: LayoutPin {
+        public var topMarginPin: LayoutPin {
             return LayoutPin(item: self, attribute: .topMargin)
         }
         
-        public var bottomMarginConstraint: LayoutPin {
+        public var bottomMarginPin: LayoutPin {
             return LayoutPin(item: self, attribute: .bottomMargin)
         }
         
-        public var leadingMarginConstraint: LayoutPin {
+        public var leadingMarginPin: LayoutPin {
             return LayoutPin(item: self, attribute: .leadingMargin)
         }
         
-        public var trailingMarginConstraint: LayoutPin {
+        public var trailingMarginPin: LayoutPin {
             return LayoutPin(item: self, attribute: .trailingMargin)
         }
     }

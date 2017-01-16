@@ -1,15 +1,16 @@
 //
-//  LayoutTests.swift
-//  LayoutTests
+//  Tests.swift
+//  Tests
 //
 //  Created by David Ask on 2017-01-16.
 //  Copyright © 2017 Formbound. All rights reserved.
 //
 
 import XCTest
-@testable import Layout
+import UIKit
+@testable import Pin
 
-class LayoutTests: XCTestCase {
+class Tests: XCTestCase {
     
     override func setUp() {
         super.setUp()
@@ -41,7 +42,7 @@ class ViewController: UIViewController {
     let label = UIView()
     
     lazy var labelCenterYConstraint: NSLayoutConstraint = {
-        return self.label.centerYConstraint == self.view.centerYConstraint
+        return self.label.centerYPin == self.view.centerYPin
     }()
     
     override func viewDidLoad() {
@@ -51,15 +52,15 @@ class ViewController: UIViewController {
         view.addSubview(label)
         
         NSLayoutConstraint.activate([
-            label.topConstraint == view.topMarginConstraint,
-            label.centerXConstraint == view.centerXConstraint,
-            label.leftConstraint >= view.leftMarginConstraint,
-            label.rightConstraint <= view.rightMarginConstraint,
+            label.topPin == view.topMarginPin,
+            label.centerXPin == view.centerXPin,
+            label.leftPin >= view.leftMarginPin,
+            label.rightPin <= view.rightMarginPin,
             ])
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        super.viewdidLoad(animated)
+        super.viewDidAppear(animated)
         
         labelCenterYConstraint.isActive = true
     }
