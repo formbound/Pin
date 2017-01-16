@@ -60,6 +60,16 @@ public struct Layout {
     public var centerY: LayoutItem<LayoutDirection.Vertical> {
         return LayoutItem(item: layoutable, attribute: .centerY)
     }
+    
+    public func edges(equalTo other: Layoutable, insets: UIEdgeInsets = .zero) -> [NSLayoutConstraint] {
+        return [
+            left == other.layout.left + insets.left,
+            right == other.layout.right - insets.left,
+            
+            top == other.layout.top + insets.top,
+            bottom == other.layout.bottom - insets.bottom
+        ]
+    }
 }
 
 
@@ -115,5 +125,15 @@ public extension View {
 
     public var lastBaseline: LayoutItem<LayoutDirection.Vertical> {
         return LayoutItem(item: self, attribute: .lastBaseline)
+    }
+}
+
+extension Sequence where Iterator.Element == NSLayoutConstraint {
+    func activate() {
+        NSLayoutConstraint.activate(Array(self))
+    }
+    
+    func deactivate() {
+        NSLayoutConstraint.deactivate(Array(self))
     }
 }
