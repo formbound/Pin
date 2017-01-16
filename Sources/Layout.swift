@@ -17,56 +17,32 @@
 
 public protocol Layoutable: AnyObject {}
 
-struct Layout {
+public struct Layout {
     
-    let layoutable: Layoutable
+    public let layoutable: Layoutable
     
     public var left: LayoutItem<LayoutDirection.Horizontal> {
         return LayoutItem(item: layoutable, attribute: .left)
-    }
-    
-    public var leftMargin: LayoutItem<LayoutDirection.Horizontal> {
-        return LayoutItem(item: layoutable, attribute: .leftMargin)
     }
     
     public var right: LayoutItem<LayoutDirection.Horizontal> {
         return LayoutItem(item: layoutable, attribute: .right)
     }
     
-    public var rightMargin: LayoutItem<LayoutDirection.Horizontal> {
-        return LayoutItem(item: layoutable, attribute: .rightMargin)
-    }
-    
     public var top: LayoutItem<LayoutDirection.Vertical> {
         return LayoutItem(item: layoutable, attribute: .top)
-    }
-    
-    public var topMargin: LayoutItem<LayoutDirection.Vertical> {
-        return LayoutItem(item: layoutable, attribute: .topMargin)
     }
     
     public var bottom: LayoutItem<LayoutDirection.Vertical> {
         return LayoutItem(item: layoutable, attribute: .bottom)
     }
     
-    public var bottomMargin: LayoutItem<LayoutDirection.Vertical> {
-        return LayoutItem(item: layoutable, attribute: .bottomMargin)
-    }
-    
     public var leading: LayoutItem<LayoutDirection.Horizontal> {
         return LayoutItem(item: layoutable, attribute: .leading)
     }
     
-    public var leadingMargin: LayoutItem<LayoutDirection.Horizontal> {
-        return LayoutItem(item: layoutable, attribute: .leadingMargin)
-    }
-    
     public var trailing: LayoutItem<LayoutDirection.Horizontal> {
         return LayoutItem(item: layoutable, attribute: .trailing)
-    }
-    
-    public var trailingMargin: LayoutItem<LayoutDirection.Horizontal> {
-        return LayoutItem(item: layoutable, attribute: .trailingMargin)
     }
     
     public var width: LayoutItem<LayoutDirection.Size> {
@@ -86,8 +62,38 @@ struct Layout {
     }
 }
 
-extension Layoutable {
-    var layout: Layout {
+
+#if os(iOS) || os(tvOS)
+    public extension Layout {
+        public var leftMargin: LayoutItem<LayoutDirection.Horizontal> {
+            return LayoutItem(item: layoutable, attribute: .leftMargin)
+        }
+        
+        public var rightMargin: LayoutItem<LayoutDirection.Horizontal> {
+            return LayoutItem(item: layoutable, attribute: .rightMargin)
+        }
+        
+        public var topMargin: LayoutItem<LayoutDirection.Vertical> {
+            return LayoutItem(item: layoutable, attribute: .topMargin)
+        }
+        
+        public var bottomMargin: LayoutItem<LayoutDirection.Vertical> {
+            return LayoutItem(item: layoutable, attribute: .bottomMargin)
+        }
+        
+        public var leadingMargin: LayoutItem<LayoutDirection.Horizontal> {
+            return LayoutItem(item: layoutable, attribute: .leadingMargin)
+        }
+        
+        public var trailingMargin: LayoutItem<LayoutDirection.Horizontal> {
+            return LayoutItem(item: layoutable, attribute: .trailingMargin)
+        }
+    }
+#endif
+
+
+public extension Layoutable {
+    public var layout: Layout {
         return Layout(layoutable: self)
     }
 }

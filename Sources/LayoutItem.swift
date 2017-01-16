@@ -1,3 +1,10 @@
+#if os(OSX)
+    import AppKit
+#elseif os(iOS) || os(tvOS)
+    import UIKit
+#endif
+
+
 public struct LayoutItem<T: LayoutDirectionProtocol> {
     public let item: AnyObject
     public let attribute: NSLayoutAttribute
