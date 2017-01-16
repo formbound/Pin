@@ -18,6 +18,7 @@
 		B7B1E22C1E2D072200C7518C /* LayoutPin.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7A0232F1E1986A700C8AF64 /* LayoutPin.swift */; };
 		B7B1E2431E2D0AE100C7518C /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B1E2421E2D0AE100C7518C /* Tests.swift */; };
 		B7B1E2451E2D0AE100C7518C /* Pin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7936AED1DF1A66400B1161C /* Pin.framework */; };
+		B7B1E24F1E2D252500C7518C /* NSLayoutConstraint+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B1E24E1E2D252500C7518C /* NSLayoutConstraint+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,6 +42,7 @@
 		B7B1E2401E2D0AE100C7518C /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7B1E2421E2D0AE100C7518C /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
 		B7B1E2441E2D0AE100C7518C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B7B1E24E1E2D252500C7518C /* NSLayoutConstraint+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSLayoutConstraint+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +104,7 @@
 			children = (
 				B7B1E2281E2D071600C7518C /* Layoutable.swift */,
 				B7A0232F1E1986A700C8AF64 /* LayoutPin.swift */,
+				B7B1E24E1E2D252500C7518C /* NSLayoutConstraint+Extensions.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -324,6 +327,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B7A023301E1986A700C8AF64 /* LayoutPin.swift in Sources */,
+				B7B1E24F1E2D252500C7518C /* NSLayoutConstraint+Extensions.swift in Sources */,
 				B7B1E2291E2D071600C7518C /* Layoutable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -665,6 +669,7 @@
 				B7B1E24A1E2D0AE100C7518C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

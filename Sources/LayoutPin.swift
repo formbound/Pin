@@ -41,6 +41,30 @@ public struct LayoutPin {
             constant: constant
         )
     }
+    
+    public func multiplied(by multiplier: CGFloat) -> LayoutPin {
+        var new = self
+        new.multiplier *= multiplier
+        return new
+    }
+    
+    public func offset(by constant: CGFloat) -> LayoutPin {
+        var new = self
+        new.constant += constant
+        return new
+    }
+    
+    public func equals(_ other: LayoutPin) -> NSLayoutConstraint {
+        return createConstraint(combining: other, relatedBy: .equal)
+    }
+    
+    public func greaterThanOrEquals(_ other: LayoutPin) -> NSLayoutConstraint {
+        return createConstraint(combining: other, relatedBy: .greaterThanOrEqual)
+    }
+    
+    public func lessThanOrEquals(_ other: LayoutPin) -> NSLayoutConstraint {
+        return createConstraint(combining: other, relatedBy: .lessThanOrEqual)
+    }
 }
 
 public func == (lhs: LayoutPin, rhs: LayoutPin) -> NSLayoutConstraint {

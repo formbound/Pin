@@ -30,8 +30,8 @@ class ViewController: UIViewController {
             label.topPin == view.topMarginPin,
             label.centerXPin == view.centerXPin,
             label.leftPin >= view.leftMarginPin,
-            label.rightPin <= view.rightMarginPin,
-            ])
+            label.rightPin <= view.rightMarginPin
+        ])
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -40,6 +40,19 @@ class ViewController: UIViewController {
         labelCenterYConstraint.isActive = true
     }
 }
+```
+
+### Expressive syntax
+
+If you don't fancy operators, you can use the more expressive syntax, or mix as you like:
+
+```swift
+NSLayoutConstraint.activate([
+    label.topPin.equals(view.topMarginPin),
+    label.centerXPin.equals(view.centerXPin),
+    label.leftPin.greaterThanOrEquals(view.leftPin * 0.25) ~ UILayoutPriorityDefaultHigh,
+    label.rightPin.lessThanOrEquals(view.rightPin.multiplied(by: 0.75).offset(by: 10)).prioritized(at: UILayoutPriorityDefaultHigh)
+])
 ```
 
 ### Setting up with Carthage

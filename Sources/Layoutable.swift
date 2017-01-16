@@ -146,15 +146,3 @@ public extension View {
         return LayoutPin(item: self, attribute: .lastBaseline)
     }
 }
-
-
-@available(OSX 10.10, iOS 8.0, tvOS 9.0, *)
-public extension Sequence where Iterator.Element == NSLayoutConstraint {
-    public func activate() {
-        NSLayoutConstraint.activate(Array(self))
-    }
-    
-    public func deactivate() {
-        NSLayoutConstraint.deactivate(Array(self))
-    }
-}

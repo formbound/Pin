@@ -55,8 +55,37 @@ class ViewController: UIViewController {
             label.topPin == view.topMarginPin,
             label.centerXPin == view.centerXPin,
             label.leftPin >= view.leftMarginPin,
-            label.rightPin <= view.rightMarginPin,
-            ])
+            label.rightPin <= view.rightMarginPin
+        ])
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        labelCenterYConstraint.isActive = true
+    }
+}
+
+class ExpressiveViewController: UIViewController {
+    
+    let label = UIView()
+    
+    lazy var labelCenterYConstraint: NSLayoutConstraint = {
+        return self.label.centerYPin == self.view.centerYPin
+    }()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        label.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(label)
+        
+        NSLayoutConstraint.activate([
+            label.topPin.equals(view.topMarginPin),
+            label.centerXPin.equals(view.centerXPin),
+            label.leftPin.greaterThanOrEquals(view.leftPin * 0.25) ~ UILayoutPriorityDefaultHigh,
+            label.rightPin.lessThanOrEquals(view.rightPin.multiplied(by: 0.75).offset(by: 10)).prioritized(at: UILayoutPriorityDefaultHigh)
+        ])
     }
     
     override func viewDidAppear(_ animated: Bool) {
