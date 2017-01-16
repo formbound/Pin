@@ -65,7 +65,7 @@ extension Layoutable {
     public func pinEdges(to other: Layoutable, insets: EdgeInsets = EdgeInsets(top: 0, left: 0, bottom: 0, right: 0)) -> [NSLayoutConstraint] {
         return [
             leftPin == other.leftPin + insets.left,
-            rightPin == other.rightPin - insets.left,
+            rightPin == other.rightPin - insets.right,
     
             topPin == other.topPin + insets.top,
             bottomPin == other.bottomPin - insets.bottom
@@ -77,7 +77,7 @@ extension Layoutable {
     public func pinEdges(to other: Layoutable, insets: UIEdgeInsets = .zero) -> [NSLayoutConstraint] {
         return [
             leftPin == other.leftPin + insets.left,
-            rightPin == other.rightPin - insets.left,
+            rightPin == other.rightPin - insets.right,
             
             topPin == other.topPin + insets.top,
             bottomPin == other.bottomPin - insets.bottom
