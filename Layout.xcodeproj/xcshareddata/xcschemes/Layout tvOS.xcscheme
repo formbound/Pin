@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0810"
+   LastUpgradeVersion = "0820"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,23 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B7936AEC1DF1A66400B1161C"
-               BuildableName = "Layout.framework"
-               BlueprintName = "Layout-iOS"
-               ReferencedContainer = "container:Layout.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B7A023371E198B2000C8AF64"
-               BuildableName = "Layout.framework"
-               BlueprintName = "Layout-Mac"
+               BlueprintIdentifier = "B73246EA1E2CF84400CE3C79"
+               BuildableName = "Layout-tvOS.framework"
+               BlueprintName = "Layout-tvOS"
                ReferencedContainer = "container:Layout.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -46,7 +32,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B7936AF51DF1A66500B1161C"
+               BlueprintIdentifier = "B73246F21E2CF84400CE3C79"
                BuildableName = "LayoutTests.xctest"
                BlueprintName = "LayoutTests"
                ReferencedContainer = "container:Layout.xcodeproj">
@@ -56,9 +42,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B7936AEC1DF1A66400B1161C"
-            BuildableName = "Layout.framework"
-            BlueprintName = "Layout-iOS"
+            BlueprintIdentifier = "B73246EA1E2CF84400CE3C79"
+            BuildableName = "Layout-tvOS.framework"
+            BlueprintName = "Layout-tvOS"
             ReferencedContainer = "container:Layout.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -78,9 +64,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B7936AEC1DF1A66400B1161C"
-            BuildableName = "Layout.framework"
-            BlueprintName = "Layout-iOS"
+            BlueprintIdentifier = "B73246EA1E2CF84400CE3C79"
+            BuildableName = "Layout-tvOS.framework"
+            BlueprintName = "Layout-tvOS"
             ReferencedContainer = "container:Layout.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -96,9 +82,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B7936AEC1DF1A66400B1161C"
-            BuildableName = "Layout.framework"
-            BlueprintName = "Layout-iOS"
+            BlueprintIdentifier = "B73246EA1E2CF84400CE3C79"
+            BuildableName = "Layout-tvOS.framework"
+            BlueprintName = "Layout-tvOS"
             ReferencedContainer = "container:Layout.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
