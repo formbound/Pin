@@ -155,6 +155,6 @@ public extension Sequence where Iterator.Element == NSLayoutConstraint {
     }
     
     public func deactivate() {
-        NSLayoutConstraint.activate(Array(self))
+        NSLayoutConstraint.deactivate(Array(self))
     }
 }
