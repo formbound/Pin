@@ -13,12 +13,12 @@
 		B73247031E2CFA0300CE3C79 /* Layout.h in Headers */ = {isa = PBXBuildFile; fileRef = B7936B0A1DF1A6A100B1161C /* Layout.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B7936AF71DF1A66500B1161C /* Layout.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7936AED1DF1A66400B1161C /* Layout.framework */; };
 		B7936B0B1DF1A6C800B1161C /* Layout.h in Headers */ = {isa = PBXBuildFile; fileRef = B7936B0A1DF1A6A100B1161C /* Layout.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		B7936B0D1DF1A6D900B1161C /* Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7936B0C1DF1A6D900B1161C /* Layout.swift */; };
 		B7A023301E1986A700C8AF64 /* LayoutItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7A0232F1E1986A700C8AF64 /* LayoutItem.swift */; };
-		B7A023321E1987CD00C8AF64 /* LayoutDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7A023311E1987CD00C8AF64 /* LayoutDirection.swift */; };
-		B7A023401E198B2D00C8AF64 /* Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7936B0C1DF1A6D900B1161C /* Layout.swift */; };
 		B7A023411E198B2D00C8AF64 /* LayoutItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7A0232F1E1986A700C8AF64 /* LayoutItem.swift */; };
-		B7A023421E198B2D00C8AF64 /* LayoutDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7A023311E1987CD00C8AF64 /* LayoutDirection.swift */; };
+		B7B1E2291E2D071600C7518C /* Layoutable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B1E2281E2D071600C7518C /* Layoutable.swift */; };
+		B7B1E22A1E2D071600C7518C /* Layoutable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B1E2281E2D071600C7518C /* Layoutable.swift */; };
+		B7B1E22B1E2D071600C7518C /* Layoutable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B1E2281E2D071600C7518C /* Layoutable.swift */; };
+		B7B1E22C1E2D072200C7518C /* LayoutItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7A0232F1E1986A700C8AF64 /* LayoutItem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,10 +47,9 @@
 		B7936AF61DF1A66500B1161C /* LayoutTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LayoutTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7936B091DF1A6A100B1161C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B7936B0A1DF1A6A100B1161C /* Layout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Layout.h; sourceTree = "<group>"; };
-		B7936B0C1DF1A6D900B1161C /* Layout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Layout.swift; sourceTree = "<group>"; };
 		B7A0232F1E1986A700C8AF64 /* LayoutItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayoutItem.swift; sourceTree = "<group>"; };
-		B7A023311E1987CD00C8AF64 /* LayoutDirection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayoutDirection.swift; sourceTree = "<group>"; };
 		B7A023381E198B2000C8AF64 /* Layout.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Layout.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B7B1E2281E2D071600C7518C /* Layoutable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Layoutable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,9 +127,8 @@
 		B7936B071DF1A69C00B1161C /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				B7936B0C1DF1A6D900B1161C /* Layout.swift */,
+				B7B1E2281E2D071600C7518C /* Layoutable.swift */,
 				B7A0232F1E1986A700C8AF64 /* LayoutItem.swift */,
-				B7A023311E1987CD00C8AF64 /* LayoutDirection.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -276,6 +274,7 @@
 				TargetAttributes = {
 					B73246EA1E2CF84400CE3C79 = {
 						CreatedOnToolsVersion = 8.2.1;
+						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 					};
 					B73246F21E2CF84400CE3C79 = {
@@ -364,6 +363,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B7B1E22C1E2D072200C7518C /* LayoutItem.swift in Sources */,
+				B7B1E22B1E2D071600C7518C /* Layoutable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -379,9 +380,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B7936B0D1DF1A6D900B1161C /* Layout.swift in Sources */,
 				B7A023301E1986A700C8AF64 /* LayoutItem.swift in Sources */,
-				B7A023321E1987CD00C8AF64 /* LayoutDirection.swift in Sources */,
+				B7B1E2291E2D071600C7518C /* Layoutable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -397,8 +397,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B7A023411E198B2D00C8AF64 /* LayoutItem.swift in Sources */,
-				B7A023421E198B2D00C8AF64 /* LayoutDirection.swift in Sources */,
-				B7A023401E198B2D00C8AF64 /* Layout.swift in Sources */,
+				B7B1E22A1E2D071600C7518C /* Layoutable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -421,6 +420,7 @@
 		B73246FD1E2CF84400CE3C79 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
@@ -434,6 +434,7 @@
 				PRODUCT_NAME = Layout;
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
@@ -443,6 +444,7 @@
 		B73246FE1E2CF84400CE3C79 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
@@ -465,6 +467,7 @@
 		B73247001E2CF84400CE3C79 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				INFOPLIST_FILE = LayoutTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -479,6 +482,7 @@
 		B73247011E2CF84400CE3C79 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				INFOPLIST_FILE = LayoutTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -718,6 +722,7 @@
 				B73246FE1E2CF84400CE3C79 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B73246FF1E2CF84400CE3C79 /* Build configuration list for PBXNativeTarget "LayoutTests" */ = {
 			isa = XCConfigurationList;
@@ -726,6 +731,7 @@
 				B73247011E2CF84400CE3C79 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B7936AE71DF1A66400B1161C /* Build configuration list for PBXProject "Layout" */ = {
 			isa = XCConfigurationList;

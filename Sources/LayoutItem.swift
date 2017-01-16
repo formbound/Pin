@@ -5,7 +5,7 @@
 #endif
 
 
-public struct LayoutItem<T: LayoutDirectionProtocol> {
+public struct LayoutItem {
     public let item: AnyObject
     public let attribute: NSLayoutAttribute
     public var multiplier: CGFloat
@@ -18,7 +18,7 @@ public struct LayoutItem<T: LayoutDirectionProtocol> {
         self.constant = constant
     }
 
-    internal func createConstraint(combining other: LayoutItem<T>, relatedBy relation: NSLayoutRelation) -> NSLayoutConstraint {
+    internal func createConstraint(combining other: LayoutItem, relatedBy relation: NSLayoutRelation) -> NSLayoutConstraint {
         return NSLayoutConstraint(
             item: self.item,
             attribute: attribute,
@@ -43,27 +43,27 @@ public struct LayoutItem<T: LayoutDirectionProtocol> {
     }
 }
 
-public func == <T: LayoutDirectionProtocol>(lhs: LayoutItem<T>, rhs: LayoutItem<T>) -> NSLayoutConstraint {
+public func == (lhs: LayoutItem, rhs: LayoutItem) -> NSLayoutConstraint {
     return lhs.createConstraint(combining: rhs, relatedBy: .equal)
 }
 
-public func <= <T: LayoutDirectionProtocol>(lhs: LayoutItem<T>, rhs: LayoutItem<T>) -> NSLayoutConstraint {
+public func <= (lhs: LayoutItem, rhs: LayoutItem) -> NSLayoutConstraint {
     return lhs.createConstraint(combining: rhs, relatedBy: .lessThanOrEqual)
 }
 
-public func >= <T: LayoutDirectionProtocol>(lhs: LayoutItem<T>, rhs: LayoutItem<T>) -> NSLayoutConstraint {
+public func >= (lhs: LayoutItem, rhs: LayoutItem) -> NSLayoutConstraint {
     return lhs.createConstraint(combining: rhs, relatedBy: .greaterThanOrEqual)
 }
 
-public func == <T: LayoutDirectionProtocol>(lhs: LayoutItem<T>, rhs: CGFloat) -> NSLayoutConstraint {
+public func == (lhs: LayoutItem, rhs: CGFloat) -> NSLayoutConstraint {
     return lhs.createConstraint(withConstant: rhs, relatedBy: .equal)
 }
 
-public func <= <T: LayoutDirectionProtocol>(lhs: LayoutItem<T>, rhs: CGFloat) -> NSLayoutConstraint {
+public func <= (lhs: LayoutItem, rhs: CGFloat) -> NSLayoutConstraint {
     return lhs.createConstraint(withConstant: rhs, relatedBy: .lessThanOrEqual)
 }
 
-public func >= <T: LayoutDirectionProtocol>(lhs: LayoutItem<T>, rhs: CGFloat) -> NSLayoutConstraint {
+public func >= (lhs: LayoutItem, rhs: CGFloat) -> NSLayoutConstraint {
     return lhs.createConstraint(withConstant: rhs, relatedBy: .greaterThanOrEqual)
 }
 
@@ -79,25 +79,25 @@ public func ~ (lhs: NSLayoutConstraint, rhs: LayoutPriority) -> NSLayoutConstrai
     return lhs
 }
 
-public func + <T: LayoutDirectionProtocol>(lhs: LayoutItem<T>, rhs: CGFloat) -> LayoutItem<T> {
+public func + (lhs: LayoutItem, rhs: CGFloat) -> LayoutItem {
     var lhs = lhs
     lhs.constant += rhs
     return lhs
 }
 
-public func - <T: LayoutDirectionProtocol>(lhs: LayoutItem<T>, rhs: CGFloat) -> LayoutItem<T> {
+public func - (lhs: LayoutItem, rhs: CGFloat) -> LayoutItem {
     var lhs = lhs
     lhs.constant -= rhs
     return lhs
 }
 
-public func * <T: LayoutDirectionProtocol>(lhs: LayoutItem<T>, rhs: CGFloat) -> LayoutItem<T> {
+public func * (lhs: LayoutItem, rhs: CGFloat) -> LayoutItem {
     var lhs = lhs
     lhs.multiplier *= rhs
     return lhs
 }
 
-public func / <T: LayoutDirectionProtocol>(lhs: LayoutItem<T>, rhs: CGFloat) -> LayoutItem<T> {
+public func / (lhs: LayoutItem, rhs: CGFloat) -> LayoutItem {
     var lhs = lhs
     lhs.multiplier /= rhs
     return lhs
