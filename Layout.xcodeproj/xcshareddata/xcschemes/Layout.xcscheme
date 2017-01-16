@@ -20,6 +20,20 @@
                ReferencedContainer = "container:Layout.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "B7A023371E198B2000C8AF64"
+               BuildableName = "Layout.framework"
+               BlueprintName = "Layout-Mac"
+               ReferencedContainer = "container:Layout.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
