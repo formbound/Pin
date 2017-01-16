@@ -2,14 +2,15 @@
     import AppKit
     public typealias View = NSView
     public typealias LayoutPriority = NSLayoutPriority
-
+    
     @available(OSX 10.11, *)
     public typealias LayoutGuide = NSLayoutGuide
 #elseif os(iOS) || os(tvOS)
     import UIKit
     public typealias View = UIView
     public typealias LayoutPriority = UILayoutPriority
-
+    public typealias Insets = UIEdgeInsets
+    
     @available(iOS 9.0, *)
     public typealias LayoutGuide = UILayoutGuide
 #endif
@@ -61,6 +62,20 @@ public struct Layout {
         return LayoutItem(item: layoutable, attribute: .centerY)
     }
     
+    #if os(macOS)
+    
+    public func edges(equalTo other: Layoutable, insets: EdgeInsets = EdgeInsets(top: 0, left: 0, bottom: 0, right: 0)) -> [NSLayoutConstraint] {
+        return [
+            left == other.layout.left + insets.left,
+            right == other.layout.right - insets.left,
+            
+            top == other.layout.top + insets.top,
+            bottom == other.layout.bottom - insets.bottom
+        ]
+    }
+    
+    #elseif os(iOS) || os(tvOS)
+    
     public func edges(equalTo other: Layoutable, insets: UIEdgeInsets = .zero) -> [NSLayoutConstraint] {
         return [
             left == other.layout.left + insets.left,
@@ -70,6 +85,8 @@ public struct Layout {
             bottom == other.layout.bottom - insets.bottom
         ]
     }
+    
+    #endif
 }
 
 
@@ -117,23 +134,24 @@ public extension View {
     public var baseline: LayoutItem<LayoutDirection.Vertical> {
         return LayoutItem(item: self, attribute: .lastBaseline)
     }
-
+    
     @available(iOS 8.0, OSX 10.11, *)
     public var firstBaseline: LayoutItem<LayoutDirection.Vertical> {
         return LayoutItem(item: self, attribute: .firstBaseline)
     }
-
+    
     public var lastBaseline: LayoutItem<LayoutDirection.Vertical> {
         return LayoutItem(item: self, attribute: .lastBaseline)
     }
 }
 
+@available(OSX 10.10, iOS 8.0, tvOS 9.0, *)
 extension Sequence where Iterator.Element == NSLayoutConstraint {
     func activate() {
         NSLayoutConstraint.activate(Array(self))
     }
     
     func deactivate() {
-        NSLayoutConstraint.deactivate(Array(self))
+        NSLayoutConstraint.activate(Array(self))
     }
 }
