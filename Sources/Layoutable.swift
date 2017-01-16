@@ -20,6 +20,7 @@ public protocol Layoutable: AnyObject {}
 
 extension Layoutable {
     
+
     public var leftPin: LayoutPin {
         return LayoutPin(item: self, attribute: .left)
     }
@@ -62,7 +63,7 @@ extension Layoutable {
     
     #if os(macOS)
     
-    public func pinEdges(to other: Layoutable, insets: EdgeInsets = EdgeInsets(top: 0, left: 0, bottom: 0, right: 0)) -> [NSLayoutConstraint] {
+    public func constraintsPinningEdges(to other: Layoutable, insets: EdgeInsets = EdgeInsets(top: 0, left: 0, bottom: 0, right: 0)) -> [NSLayoutConstraint] {
         return [
             leftPin == other.leftPin + insets.left,
             rightPin == other.rightPin - insets.right,
@@ -74,7 +75,7 @@ extension Layoutable {
     
     #elseif os(iOS) || os(tvOS)
     
-    public func pinEdges(to other: Layoutable, insets: UIEdgeInsets = .zero) -> [NSLayoutConstraint] {
+    public func constraintsPinningEdges(to other: Layoutable, insets: UIEdgeInsets = .zero) -> [NSLayoutConstraint] {
         return [
             leftPin == other.leftPin + insets.left,
             rightPin == other.rightPin - insets.right,

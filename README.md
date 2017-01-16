@@ -1,5 +1,6 @@
+
 Pin
-========
+===
 <a href="https://swift.org"><img src="https://img.shields.io/badge/Swift-3.0.2-orange.svg?style=flat" alt="Swift" /></a>
 <a href="https://tldrlegal.com/license/mit-license"><img src="https://img.shields.io/badge/License-MIT-blue.svg?style=flat" alt="License" /></a>
 
@@ -42,6 +43,13 @@ class ViewController: UIViewController {
 }
 ```
 
+### Constants, Multipliers and Priorities
+
+```swift
+let widthConstraint = label.widthPin <= view.widthPin * 0.75 ~ UILayoutPriorityDefaultHigh
+let topConstraint = label.topPin == imageView.bottomPin + 10
+```
+
 ### Expressive syntax
 
 If you don't fancy operators, you can use the more expressive syntax, or mix as you like:
@@ -55,7 +63,7 @@ NSLayoutConstraint.activate([
 ])
 ```
 
-### Setting up with Carthage
+## Setting up with Carthage
 
 [Carthage](https://github.com/Carthage/Carthage) is a decentralized dependency manager that automates the process of adding frameworks to your Cocoa application.
 
