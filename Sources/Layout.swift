@@ -146,12 +146,12 @@ public extension View {
 }
 
 @available(OSX 10.10, iOS 8.0, tvOS 9.0, *)
-extension Sequence where Iterator.Element == NSLayoutConstraint {
-    func activate() {
+public extension Sequence where Iterator.Element == NSLayoutConstraint {
+    public func activate() {
         NSLayoutConstraint.activate(Array(self))
     }
     
-    func deactivate() {
+    public func deactivate() {
         NSLayoutConstraint.activate(Array(self))
     }
 }
