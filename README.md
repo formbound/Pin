@@ -1,10 +1,5 @@
 <img src="https://s27.postimg.org/hwopewy8j/pin.png" width="200" />
 
-#Pin <a href="https://swift.org"><img src="https://img.shields.io/badge/Swift-3.0.2-orange.svg?style=flat" alt="Swift" /></a> <a href="https://tldrlegal.com/license/mit-license"><img src="https://img.shields.io/badge/License-MIT-blue.svg?style=flat" alt="License" /></a>
-
-Pin gives you an easily readable, easily writable layout API for iOS, macOS and tvOS while maintaining as little overhead as possible.
-
-
 
 ## Features
 
