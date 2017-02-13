@@ -5,9 +5,25 @@
 Pin gives you an easily readable, easily writable layout API for iOS, macOS and tvOS while maintaining as little overhead as possible.
 
 
+
+## Features
+
+- [x] iOS 8 compatible
+- [x] Maximum readability
+- [x] No new concepts or magic
+
+
 ## Usage
 
-Import the framework with `import Pin`.
+`import Pin` adds new properties to `Layoutable` elements such as views and layout guides.
+
+Define a constraint using operators like so:
+
+```swift
+let constraint = label.bottomPin == view.bottomPin // NSLayoutConstraint
+```
+
+or create multiple constraints without storing them, for instance, in `viewDidLoad`:
 
 ```swift
 NSLayoutConstraint.activate([
@@ -64,4 +80,5 @@ github "formbound/Pin"
 Pin is released under the MIT license. See LICENSE for details.
 
 ## About Formbound
+
 [Formbound AB](https://github.com/formbound) is a software development firm devoted open-source development.
