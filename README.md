@@ -7,38 +7,15 @@ Pin gives you an easily readable, easily writable layout API for iOS, macOS and 
 
 ## Usage
 
+Import the framework with `import Pin`.
+
 ```swift
-import UIKit
-import Pin
-
-class ViewController: UIViewController {
-
-    let label = UIView()
-
-    lazy var labelCenterYConstraint: NSLayoutConstraint = {
-        return self.label.centerYPin == self.view.centerYPin
-    }()
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        label.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(label)
-
-        NSLayoutConstraint.activate([
-            label.topPin == view.topMarginPin,
-            label.centerXPin == view.centerXPin,
-            label.leftPin >= view.leftMarginPin,
-            label.rightPin <= view.rightMarginPin
-        ])
-    }
-
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-
-        labelCenterYConstraint.isActive = true
-    }
-}
+NSLayoutConstraint.activate([
+    label.topPin == view.topMarginPin,
+    label.centerXPin == view.centerXPin,
+    label.leftPin >= view.leftMarginPin,
+    label.rightPin <= view.rightMarginPin
+])
 ```
 
 ### Constants, Multipliers and Priorities
