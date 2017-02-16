@@ -1,4 +1,4 @@
-<img src="https://s27.postimg.org/hwopewy8j/pin.png" width="200" />
+<img src="https://s27.postimg.org/65mc9pkj7/pin_header.png" width="890" />
 
 
 ## Features
