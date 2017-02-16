@@ -76,4 +76,4 @@ Pin is released under the MIT license. See LICENSE for details.
 
 ## About Formbound
 
-[Formbound AB](https://github.com/formbound) is a software development firm devoted open-source development.
+[Formbound AB](https://github.com/formbound) is a software development firm devoted to open-source development.
