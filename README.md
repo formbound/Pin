@@ -49,6 +49,23 @@ NSLayoutConstraint.activate([
 ])
 ```
 
+
+
+### Working with multiple Pins & Constraints 
+
+Two matching sequences of pins can match together like so:
+
+```swift
+let constraints = label.centerPins == view.centerPins
+```
+
+or
+
+```swift
+let constraints = label.edgePins == view.edgeMarginPins
+```
+
+
 ## Setting up with Carthage
 
 [Carthage](https://github.com/Carthage/Carthage) is a decentralized dependency manager that automates the process of adding frameworks to your Cocoa application.

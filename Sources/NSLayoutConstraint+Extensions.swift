@@ -20,4 +20,28 @@ public extension Sequence where Iterator.Element == NSLayoutConstraint {
     public func deactivate() {
         NSLayoutConstraint.deactivate(Array(self))
     }
+
+    public func prioritized(at priority: LayoutPriority) -> [NSLayoutConstraint] {
+        return map { constraint in
+            constraint.priority = priority
+            return constraint
+        }
+    }
 }
+
+
+precedencegroup ConstraintPriorityPrecedence {
+    associativity: right
+    lowerThan: ComparisonPrecedence
+}
+
+infix operator ~ : ConstraintPriorityPrecedence
+
+public func ~ (lhs: NSLayoutConstraint, rhs: LayoutPriority) -> NSLayoutConstraint {
+    return lhs.prioritized(at: rhs)
+}
+
+public func ~ <T: Sequence>(lhs: T, rhs: LayoutPriority) -> [NSLayoutConstraint] where T.Iterator.Element == NSLayoutConstraint {
+    return lhs.prioritized(at: rhs)
+}
+
