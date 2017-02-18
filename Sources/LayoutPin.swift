@@ -4,7 +4,6 @@
     import UIKit
 #endif
 
-
 public struct LayoutPin {
     public let item: AnyObject
     public let attribute: NSLayoutAttribute
@@ -41,27 +40,27 @@ public struct LayoutPin {
             constant: constant
         )
     }
-    
+
     public func multiplied(by multiplier: CGFloat) -> LayoutPin {
         var new = self
         new.multiplier *= multiplier
         return new
     }
-    
+
     public func offset(by constant: CGFloat) -> LayoutPin {
         var new = self
         new.constant += constant
         return new
     }
-    
+
     public func equals(_ other: LayoutPin) -> NSLayoutConstraint {
         return createConstraint(combining: other, relatedBy: .equal)
     }
-    
+
     public func greaterThanOrEquals(_ other: LayoutPin) -> NSLayoutConstraint {
         return createConstraint(combining: other, relatedBy: .greaterThanOrEqual)
     }
-    
+
     public func lessThanOrEquals(_ other: LayoutPin) -> NSLayoutConstraint {
         return createConstraint(combining: other, relatedBy: .lessThanOrEqual)
     }
@@ -102,7 +101,6 @@ public func <= (lhs: LayoutPin, rhs: CGFloat) -> NSLayoutConstraint {
 public func >= (lhs: LayoutPin, rhs: CGFloat) -> NSLayoutConstraint {
     return lhs.greaterThanOrEquals(rhs)
 }
-
 
 public func + (lhs: LayoutPin, rhs: CGFloat) -> LayoutPin {
     var lhs = lhs
@@ -177,36 +175,4 @@ public func <= (lhs: [LayoutPin], rhs: [LayoutPin]) -> [NSLayoutConstraint] {
 
 public func >= (lhs: [LayoutPin], rhs: [LayoutPin]) -> [NSLayoutConstraint] {
     return lhs.greaterThanOrEquals(rhs)
-}
-
-
-public func + (lhs: [LayoutPin], rhs: CGFloat) -> [LayoutPin] {
-    return lhs.map { pin in
-        var pin = pin
-        pin.constant += rhs
-        return pin
-    }
-}
-
-public func - (lhs: [LayoutPin], rhs: CGFloat) -> [LayoutPin] {
-    return lhs.map { pin in
-        var pin = pin
-        pin.constant -= rhs
-        return pin
-    }}
-
-public func * (lhs: [LayoutPin], rhs: CGFloat) -> [LayoutPin] {
-    return lhs.map { pin in
-        var pin = pin
-        pin.multiplier *= rhs
-        return pin
-    }
-}
-
-public func / (lhs: [LayoutPin], rhs: CGFloat) -> [LayoutPin] {
-    return lhs.map { pin in
-        var pin = pin
-        pin.multiplier /= rhs
-        return pin
-    }
 }

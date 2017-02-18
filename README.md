@@ -18,15 +18,26 @@ Define a constraint using operators like so:
 let constraint = label.bottomPin == view.bottomPin // NSLayoutConstraint
 ```
 
-or create multiple constraints without storing them, for instance, in `viewDidLoad`:
+two matching sequences of pins can create multiple constraints:
 
 ```swift
-NSLayoutConstraint.activate([
-    label.topPin == view.topMarginPin,
-    label.centerXPin == view.centerXPin,
-    label.leftPin >= view.leftMarginPin,
-    label.rightPin <= view.rightMarginPin
-])
+let constraints = label.centerPins == view.centerPins // [NSLayoutConstraints]
+```
+
+You can create multiple constraints without storing them, for instance, in `viewDidLoad`:
+
+```swift
+var constraints = [NSLayoutConstraint]()
+
+constraints += backgroundView.edgePins == view.edgeMarginPins
+
+constraints += [
+  label.topPin == view.topLayoutGuide.bottomPin,
+  label.centerXPin == view.centerXPin,
+  label.widthPin <= view.widthPin * 0.75
+]
+
+constraints.activate()
 ```
 
 ### Constants, Multipliers and Priorities
@@ -49,22 +60,22 @@ NSLayoutConstraint.activate([
 ])
 ```
 
-
-
-### Working with multiple Pins & Constraints 
-
-Two matching sequences of pins can match together like so:
+Expressive syntax gives more options when it comes to setting up multiple constraints at once
 
 ```swift
-let constraints = label.centerPins == view.centerPins
+let constraints = textLabel.constraintsForCenterPins(
+	equalTo: view,
+	offset: CGPoint(x: 10, y: 0),
+	multiplier: 0.5
+)
 ```
-
-or
 
 ```swift
-let constraints = label.edgePins == view.edgeMarginPins
+let constraints = textView.constraintsForEdgePins(
+	equalTo: view,
+	insets: UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+)
 ```
-
 
 ## Setting up with Carthage
 
