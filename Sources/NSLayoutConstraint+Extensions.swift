@@ -5,9 +5,15 @@
 #endif
 
 extension NSLayoutConstraint {
-    func prioritized(at priority: LayoutPriority) -> NSLayoutConstraint {
+    public func prioritized(at priority: LayoutPriority) -> NSLayoutConstraint {
         self.priority = priority
         return self
+    }
+
+    public static func make(handler: (inout [NSLayoutConstraint]) -> Void) -> [NSLayoutConstraint] {
+        var constraints = [NSLayoutConstraint]()
+        handler(&constraints)
+        return constraints
     }
 }
 
@@ -37,9 +43,5 @@ precedencegroup ConstraintPriorityPrecedence {
 infix operator ~ : ConstraintPriorityPrecedence
 
 public func ~ (lhs: NSLayoutConstraint, rhs: LayoutPriority) -> NSLayoutConstraint {
-    return lhs.prioritized(at: rhs)
-}
-
-public func ~ <T: Sequence>(lhs: T, rhs: LayoutPriority) -> [NSLayoutConstraint] where T.Iterator.Element == NSLayoutConstraint {
     return lhs.prioritized(at: rhs)
 }

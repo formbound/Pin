@@ -10,13 +10,81 @@ public struct LayoutPin {
     public var multiplier: CGFloat
     public var constant: CGFloat
 
-    init(item: AnyObject, attribute: NSLayoutAttribute, multiplier: CGFloat = 1, constant: CGFloat = 0) {
+    public init(item: AnyObject, attribute: NSLayoutAttribute, multiplier: CGFloat = 1, constant: CGFloat = 0) {
         self.item = item
         self.attribute = attribute
         self.multiplier = multiplier
         self.constant = constant
     }
 
+    public func multiplied(by multiplier: CGFloat) -> LayoutPin {
+        var new = self
+        new.multiplier *= multiplier
+        return new
+    }
+
+    public func offset(by constant: CGFloat) -> LayoutPin {
+        var new = self
+        new.constant += constant
+        return new
+    }
+
+    @available(*, deprecated: 1.2.0, renamed: "equal(to:)")
+    public func equals(_ other: LayoutPin) -> NSLayoutConstraint {
+        return equal(to: other)
+    }
+
+    public func equal(to other: LayoutPin) -> NSLayoutConstraint {
+        return createConstraint(combining: other, relatedBy: .equal)
+    }
+
+    @available(*, deprecated: 1.2.0, renamed: "greaterThanOrEqual(to:)")
+    public func greaterThanOrEquals(_ other: LayoutPin) -> NSLayoutConstraint {
+        return greaterThanOrEqual(to: other)
+    }
+
+    public func greaterThanOrEqual(to other: LayoutPin) -> NSLayoutConstraint {
+        return createConstraint(combining: other, relatedBy: .greaterThanOrEqual)
+    }
+
+    @available(*, deprecated: 1.2.0, renamed: "lessThanOrEqual(to:)")
+    public func lessThanOrEquals(_ other: LayoutPin) -> NSLayoutConstraint {
+        return lessThanOrEqual(to: other)
+    }
+
+    public func lessThanOrEqual(to other: LayoutPin) -> NSLayoutConstraint {
+        return createConstraint(combining: other, relatedBy: .lessThanOrEqual)
+    }
+
+    @available(*, deprecated: 1.2.0, renamed: "equal(to:)")
+    public func equals(_ constant: CGFloat) -> NSLayoutConstraint {
+        return equal(to: constant)
+    }
+
+    public func equal(to constant: CGFloat) -> NSLayoutConstraint {
+        return createConstraint(withConstant: constant, relatedBy: .equal)
+    }
+
+    @available(*, deprecated: 1.2.0, renamed: "greaterThanOrEqual(to:)")
+    public func greaterThanOrEquals(_ constant: CGFloat) -> NSLayoutConstraint {
+        return greaterThanOrEqual(to: constant)
+    }
+
+    public func greaterThanOrEqual(to constant: CGFloat) -> NSLayoutConstraint {
+        return createConstraint(withConstant: constant, relatedBy: .greaterThanOrEqual)
+    }
+
+    @available(*, deprecated: 1.2.0, renamed: "lessThanOrEqual(to:)")
+    public func lessThanOrEquals(_ constant: CGFloat) -> NSLayoutConstraint {
+        return lessThanOrEqual(to: constant)
+    }
+
+    public func lessThanOrEqual(to constant: CGFloat) -> NSLayoutConstraint {
+        return createConstraint(withConstant: constant, relatedBy: .lessThanOrEqual)
+    }
+}
+
+internal extension LayoutPin {
     internal func createConstraint(combining other: LayoutPin, relatedBy relation: NSLayoutRelation) -> NSLayoutConstraint {
         return NSLayoutConstraint(
             item: self.item,
@@ -40,66 +108,31 @@ public struct LayoutPin {
             constant: constant
         )
     }
-
-    public func multiplied(by multiplier: CGFloat) -> LayoutPin {
-        var new = self
-        new.multiplier *= multiplier
-        return new
-    }
-
-    public func offset(by constant: CGFloat) -> LayoutPin {
-        var new = self
-        new.constant += constant
-        return new
-    }
-
-    public func equals(_ other: LayoutPin) -> NSLayoutConstraint {
-        return createConstraint(combining: other, relatedBy: .equal)
-    }
-
-    public func greaterThanOrEquals(_ other: LayoutPin) -> NSLayoutConstraint {
-        return createConstraint(combining: other, relatedBy: .greaterThanOrEqual)
-    }
-
-    public func lessThanOrEquals(_ other: LayoutPin) -> NSLayoutConstraint {
-        return createConstraint(combining: other, relatedBy: .lessThanOrEqual)
-    }
-
-    public func equals(_ constant: CGFloat) -> NSLayoutConstraint {
-        return createConstraint(withConstant: constant, relatedBy: .equal)
-    }
-
-    public func greaterThanOrEquals(_ constant: CGFloat) -> NSLayoutConstraint {
-        return createConstraint(withConstant: constant, relatedBy: .greaterThanOrEqual)
-    }
-
-    public func lessThanOrEquals(_ constant: CGFloat) -> NSLayoutConstraint {
-        return createConstraint(withConstant: constant, relatedBy: .lessThanOrEqual)
-    }
 }
 
+
 public func == (lhs: LayoutPin, rhs: LayoutPin) -> NSLayoutConstraint {
-    return lhs.equals(rhs)
+    return lhs.equal(to: rhs)
 }
 
 public func <= (lhs: LayoutPin, rhs: LayoutPin) -> NSLayoutConstraint {
-    return lhs.lessThanOrEquals(rhs)
+    return lhs.lessThanOrEqual(to: rhs)
 }
 
 public func >= (lhs: LayoutPin, rhs: LayoutPin) -> NSLayoutConstraint {
-    return lhs.greaterThanOrEquals(rhs)
+    return lhs.greaterThanOrEqual(to: rhs)
 }
 
 public func == (lhs: LayoutPin, rhs: CGFloat) -> NSLayoutConstraint {
-    return lhs.equals(rhs)
+    return lhs.equal(to: rhs)
 }
 
 public func <= (lhs: LayoutPin, rhs: CGFloat) -> NSLayoutConstraint {
-    return lhs.lessThanOrEquals(rhs)
+    return lhs.lessThanOrEqual(to: rhs)
 }
 
 public func >= (lhs: LayoutPin, rhs: CGFloat) -> NSLayoutConstraint {
-    return lhs.greaterThanOrEquals(rhs)
+    return lhs.greaterThanOrEqual(to: rhs)
 }
 
 public func + (lhs: LayoutPin, rhs: CGFloat) -> LayoutPin {
@@ -126,53 +159,3 @@ public func / (lhs: LayoutPin, rhs: CGFloat) -> LayoutPin {
     return lhs
 }
 
-// MARK: Sequences
-
-extension Collection where Iterator.Element == LayoutPin {
-
-    internal func makeConstraints(_ otherPins: Self, relation: NSLayoutRelation) -> [NSLayoutConstraint] {
-        guard self.count == otherPins.count else {
-            fatalError("Left-hand side pin count does not match right-hand side pin count")
-        }
-
-        var result = [NSLayoutConstraint]()
-
-        var index = startIndex
-
-        while index < endIndex {
-
-            let lhs = self[index]
-            let rhs = otherPins[index]
-
-            result.append(lhs.createConstraint(combining: rhs, relatedBy: relation))
-
-            index = self.index(after: index)
-        }
-
-        return result
-    }
-
-    func equals(_ otherPins: Self) -> [NSLayoutConstraint] {
-        return makeConstraints(otherPins, relation: .equal)
-    }
-
-    func lessThanOrEquals(_ otherPins: Self) -> [NSLayoutConstraint] {
-        return makeConstraints(otherPins, relation: .lessThanOrEqual)
-    }
-
-    func greaterThanOrEquals(_ otherPins: Self) -> [NSLayoutConstraint] {
-        return makeConstraints(otherPins, relation: .greaterThanOrEqual)
-    }
-}
-
-public func == (lhs: [LayoutPin], rhs: [LayoutPin]) -> [NSLayoutConstraint] {
-    return lhs.equals(rhs)
-}
-
-public func <= (lhs: [LayoutPin], rhs: [LayoutPin]) -> [NSLayoutConstraint] {
-    return lhs.lessThanOrEquals(rhs)
-}
-
-public func >= (lhs: [LayoutPin], rhs: [LayoutPin]) -> [NSLayoutConstraint] {
-    return lhs.greaterThanOrEquals(rhs)
-}

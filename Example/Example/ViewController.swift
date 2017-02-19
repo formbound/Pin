@@ -52,24 +52,24 @@ class ViewController: UIViewController {
         longTextLabel.translatesAutoresizingMaskIntoConstraints = false
         textContainer.addSubview(longTextLabel)
 
-        var constraints = [NSLayoutConstraint]()
+        NSLayoutConstraint.make { constraints in
+            constraints += backgroundView.constraints(pinningEdgesTo: view)
 
-        constraints += backgroundView.edgePins == view.edgePins
+            constraints += [
+                titleLabel.topPin.equal(to: topLayoutGuide.bottomPin + 30),
 
-        constraints += [
-            titleLabel.topPin == topLayoutGuide.bottomPin + 30,
+                titleLabel.centerXPin.equal(to: view.centerXPin),
+                titleLabel.widthPin <= view.widthPin * 0.75,
 
-            titleLabel.centerXPin == view.centerXPin,
-            titleLabel.widthPin <= view.widthPin * 0.75,
+                textContainer.bottomPin == bottomLayoutGuide.topPin - 30,
+                textContainer.leftPin == view.leftMarginPin,
+                textContainer.rightPin == view.rightMarginPin
+            ]
 
-            textContainer.bottomPin == bottomLayoutGuide.topPin - 30,
-            textContainer.leftPin == view.leftMarginPin,
-            textContainer.rightPin == view.rightMarginPin
-        ]
+            constraints += longTextLabel.constraints(pinningEdgeMarginsTo: textContainer)
+        }.activate()
 
-        constraints += longTextLabel.edgePins == textContainer.edgeMarginPins
-
-        constraints.activate()
+        titleLabel.constraints(pinningCenterTo: view, offset: CGPoint(x: 0, y: 10), multiplier: 1)
     }
 
     override var preferredStatusBarStyle: UIStatusBarStyle {

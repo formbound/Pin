@@ -18,28 +18,6 @@ Define a constraint using operators like so:
 let constraint = label.bottomPin == view.bottomPin // NSLayoutConstraint
 ```
 
-two matching sequences of pins can create multiple constraints:
-
-```swift
-let constraints = label.centerPins == view.centerPins // [NSLayoutConstraints]
-```
-
-You can create multiple constraints without storing them, for instance, in `viewDidLoad`:
-
-```swift
-var constraints = [NSLayoutConstraint]()
-
-constraints += backgroundView.edgePins == view.edgeMarginPins
-
-constraints += [
-  label.topPin == view.topLayoutGuide.bottomPin,
-  label.centerXPin == view.centerXPin,
-  label.widthPin <= view.widthPin * 0.75
-]
-
-constraints.activate()
-```
-
 ### Constants, Multipliers and Priorities
 
 ```swift
@@ -47,35 +25,93 @@ let widthConstraint = label.widthPin <= view.widthPin * 0.75 ~ UILayoutPriorityD
 let topConstraint = label.topPin == imageView.bottomPin + 10
 ```
 
+### Convenience methods
+
+Pin a views center. `offset` and `multiplier` is optional.
+
+```swift
+titleLabel.constraints(pinningCenterTo: view) // [NSLayoutConstraint]
+```
+
+Pin a views edges to another view. `insets` is optional.
+
+```swift
+backgroundView.constraints(pinningEdgesTo: view) // [NSLayoutConstraint]
+```
+Pin a views edges to another views edge margins
+```swift
+longTextLabel.constraints(pinningEdgeMarginsTo: textContainer) // [NSLayoutConstraint]
+```
+
+`Sequence` of `NSLayoutConstraint` is extended when importing Pin with two methods.
+
+```swift
+let constraints = [
+  label.centerXPin == view.centerXPin,
+  label.width <= 250,
+  label.topPin == view.topLayoutGuide.bottomPin
+]
+
+constraints.activate() // Activates constraints
+constraints.deactivate() // Deactivates constraints
+```
+
+### Real-world usage
+
+You can create multiple constraints without storing them, for instance, in `viewDidLoad`:
+
+```swift
+override func viewDidLoad() {
+	super.viewDidLoad()
+	
+	var constraints = [NSLayoutConstraint]()
+
+    constraints += backgroundView.constraints(pinningEdgesTo: view)
+
+    constraints += [
+      titleLabel.topPin.equal(to: topLayoutGuide.bottomPin + 30),
+
+      titleLabel.centerXPin.equal(to: view.centerXPin),
+      titleLabel.widthPin <= view.widthPin * 0.75,
+
+      textContainer.bottomPin == bottomLayoutGuide.topPin - 30,
+      textContainer.leftPin == view.leftMarginPin,
+      textContainer.rightPin == view.rightMarginPin
+    ]
+
+    constraints += longTextLabel.constraints(pinningEdgeMarginsTo: textContainer)
+
+    constraints.activate()
+  
+}
+```
+
+
+
+You can also use `NSLayoutConstraint.make` for an even cleaner implementation:
+
+```swift
+NSLayoutConstraint.make { constraints in
+	constraints += backgroundView.constraints(pinningEdgesTo: view)
+	constraints.append(textLabel.width == 200)
+}.activate()
+```
+
+
+
 ### Expressive syntax
 
 If you don't fancy operators, you can use the more expressive syntax, or mix as you like:
 
 ```swift
 NSLayoutConstraint.activate([
-    label.topPin.equals(view.topMarginPin),
-    label.centerXPin.equals(view.centerXPin),
-    label.leftPin.greaterThanOrEquals(view.leftPin * 0.25) ~ UILayoutPriorityDefaultHigh,
-    label.rightPin.lessThanOrEquals(view.rightPin.multiplied(by: 0.75).offset(by: 10)).prioritized(at: UILayoutPriorityDefaultHigh)
-])
+    label.topPin.equal(to: view.topMarginPin),
+    label.centerXPin.equal(to: view.centerXPin),
+    label.leftPin.greaterThanOrEqual(to: view.leftPin * 0.25) ~ UILayoutPriorityDefaultHigh,
+    label.rightPin.lessThanOrEqual(to: view.rightPin.multiplied(by: 0.75).offset(by: 10)).prioritized(at: UILayoutPriorityDefaultHigh)
+    ])
 ```
 
-Expressive syntax gives more options when it comes to setting up multiple constraints at once
-
-```swift
-let constraints = textLabel.constraintsForCenterPins(
-	equalTo: view,
-	offset: CGPoint(x: 10, y: 0),
-	multiplier: 0.5
-)
-```
-
-```swift
-let constraints = textView.constraintsForEdgePins(
-	equalTo: view,
-	insets: UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
-)
-```
 
 ## Setting up with Carthage
 
