@@ -53,10 +53,10 @@ class ViewController: UIViewController {
         textContainer.addSubview(longTextLabel)
 
         NSLayoutConstraint.make { constraints in
-            constraints += backgroundView.constraints(pinningEdgesTo: view)
+            constraints += backgroundView.pinEdges(to: view)
 
             constraints += [
-                titleLabel.topPin.equal(to: topLayoutGuide.bottomPin + 30),
+                titleLabel.topPin == topLayoutGuide.bottomPin + 30,
 
                 titleLabel.centerXPin.equal(to: view.centerXPin),
                 titleLabel.widthPin <= view.widthPin * 0.75,
@@ -66,7 +66,7 @@ class ViewController: UIViewController {
                 textContainer.rightPin == view.rightMarginPin
             ]
 
-            constraints += longTextLabel.constraints(pinningEdgeMarginsTo: textContainer)
+            constraints += longTextLabel.pinEdgeMargins(to: textContainer)
         }.activate()
     }
 

@@ -30,17 +30,17 @@ let topConstraint = label.topPin == imageView.bottomPin + 10
 Pin a views center. `offset` and `multiplier` is optional.
 
 ```swift
-titleLabel.constraints(pinningCenterTo: view) // [NSLayoutConstraint]
+titleLabel.pinCenter(to: view) // [NSLayoutConstraint]
 ```
 
 Pin a views edges to another view. `insets` is optional.
 
 ```swift
-backgroundView.constraints(pinningEdgesTo: view) // [NSLayoutConstraint]
+backgroundView.pinEdges(to: view) // [NSLayoutConstraint]
 ```
 Pin a views edges to another views edge margins
 ```swift
-longTextLabel.constraints(pinningEdgeMarginsTo: textContainer) // [NSLayoutConstraint]
+longTextLabel.pinEdgeMargins(to: textContainer) // [NSLayoutConstraint]
 ```
 
 `Sequence` of `NSLayoutConstraint` is extended when importing Pin with two methods.
@@ -66,10 +66,10 @@ override func viewDidLoad() {
 	
 	var constraints = [NSLayoutConstraint]()
 
-    constraints += backgroundView.constraints(pinningEdgesTo: view)
+    constraints += backgroundView.pinEdges(to: view)
 
     constraints += [
-      titleLabel.topPin.equal(to: topLayoutGuide.bottomPin + 30),
+      titleLabel.topPin == topLayoutGuide.bottomPin + 30,
 
       titleLabel.centerXPin.equal(to: view.centerXPin),
       titleLabel.widthPin <= view.widthPin * 0.75,
@@ -79,10 +79,9 @@ override func viewDidLoad() {
       textContainer.rightPin == view.rightMarginPin
     ]
 
-    constraints += longTextLabel.constraints(pinningEdgeMarginsTo: textContainer)
+    constraints += longTextLabel.pinEdgeMargins(to: textContainer)
 
     constraints.activate()
-  
 }
 ```
 
@@ -92,7 +91,7 @@ You can also use `NSLayoutConstraint.make` for an even cleaner implementation:
 
 ```swift
 NSLayoutConstraint.make { constraints in
-	constraints += backgroundView.constraints(pinningEdgesTo: view)
+	constraints += backgroundView.pinEdges(to: view)
 	constraints.append(textLabel.width == 200)
 }.activate()
 ```

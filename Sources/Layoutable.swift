@@ -60,12 +60,7 @@ extension Layoutable {
         return LayoutPin(item: self, attribute: .centerY)
     }
 
-    @available(*, deprecated: 1.1.0, renamed: "constraints(pinningEdgesTo:insets:)")
     public func pinEdges(to other: Layoutable, insets: Insets = Insets(top: 0, left: 0, bottom: 0, right: 0)) -> [NSLayoutConstraint] {
-        return constraints(pinningEdgesTo: other, insets: insets)
-    }
-
-    public func constraints(pinningEdgesTo other: Layoutable, insets: Insets = Insets(top: 0, left: 0, bottom: 0, right: 0)) -> [NSLayoutConstraint] {
         return [
             leftPin == other.leftPin + insets.left,
             rightPin == other.rightPin - insets.right,
@@ -75,7 +70,7 @@ extension Layoutable {
         ]
     }
 
-    public func constraints(pinningCenterTo other: Layoutable, offset: CGPoint = .zero, multiplier: CGFloat = 1) -> [NSLayoutConstraint] {
+    public func pinCenter(to other: Layoutable, offset: CGPoint = .zero, multiplier: CGFloat = 1) -> [NSLayoutConstraint] {
         return [
             centerXPin == other.centerXPin * multiplier + offset.x,
             centerYPin == other.centerYPin * multiplier + offset.y,
@@ -113,7 +108,7 @@ extension Layoutable {
             return [topMarginPin, leftMarginPin, bottomMarginPin, rightMarginPin]
         }
 
-        public func constraints(pinningEdgeMarginsTo other: Layoutable, insets: Insets = Insets(top: 0, left: 0, bottom: 0, right: 0)) -> [NSLayoutConstraint] {
+        public func pinEdgeMargins(to other: Layoutable, insets: Insets = Insets(top: 0, left: 0, bottom: 0, right: 0)) -> [NSLayoutConstraint] {
             return [
                 leftPin == other.leftMarginPin + insets.left,
                 rightPin == other.rightMarginPin - insets.right,
