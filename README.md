@@ -71,7 +71,7 @@ override func viewDidLoad() {
     constraints += [
       titleLabel.topPin == topLayoutGuide.bottomPin + 30,
 
-      titleLabel.centerXPin.equal(to: view.centerXPin),
+      titleLabel.centerXPin == view.centerXPin,
       titleLabel.widthPin <= view.widthPin * 0.75,
 
       textContainer.bottomPin == bottomLayoutGuide.topPin - 30,
