@@ -110,7 +110,6 @@ internal extension LayoutPin {
     }
 }
 
-
 public func == (lhs: LayoutPin, rhs: LayoutPin) -> NSLayoutConstraint {
     return lhs.equal(to: rhs)
 }
@@ -158,4 +157,3 @@ public func / (lhs: LayoutPin, rhs: CGFloat) -> LayoutPin {
     lhs.multiplier /= rhs
     return lhs
 }
-
