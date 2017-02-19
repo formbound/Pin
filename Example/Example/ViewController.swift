@@ -68,8 +68,6 @@ class ViewController: UIViewController {
 
             constraints += longTextLabel.constraints(pinningEdgeMarginsTo: textContainer)
         }.activate()
-
-        titleLabel.constraints(pinningCenterTo: view, offset: CGPoint(x: 0, y: 10), multiplier: 1)
     }
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
